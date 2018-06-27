@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>signup</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>  
+
+<style type="text/css">
+	p{
+    color: red;
+  }
+</style>
+
+</head>
+
+
+<body>
+
+<div class="jumbotron text-center">
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="Logo.png" class="img-rounded" alt="Cinque Terre" style="width:300px;height:150px;">
+    </div>
+  <div class="col-sm-9">
+  <h1>CARS & BIKES</h1>
+  <h3>Encyclopedia of Cars and Bikes.</h3> 
+  </div>
+</div>
+</div>
+  
+<div class="container">
+  <h1 style="text-align: center"> REGISTRATION FORM </h1>
+  <div class="row">
+    <div class="col-sm-4">
+    
+    </div>
+    <div class="col-sm-4">
+          <div class="form-group">
+            <form name = "signup" action="http://demo6835492.mockable.io/sendEmail" onsubmit="return validatesignup()" method="POST" >
+            
+
+
+            <label for="usr">Name:</label>
+            <input type="text" name="name" placeholder="Enter name" class="form-control" id="name" ><br>
+            <p id="vname" ></p>
+
+            <label for="email">Email:</label>
+            <input type="text" placeholder= "Enter email" class="form-control" id="email"><br>
+            <p id="vmail" ></p>
+
+            <label for="pwd">Password:</label>
+            <input type="password" placeholder= "Enter password" class="form-control" id="password"><br>
+            <p id="vpass" ></p>
+
+            <br>
+
+            <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+
+
+            
+            </form>
+          </div>  
+    </div>
+    <div class="col-sm-4">
+    
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+
