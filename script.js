@@ -1,3 +1,6 @@
+
+var abc = [];
+
 function checkLength(formname,id,minLengt,maxLengt)
 {
 	x=document.forms[formname][id].value;
@@ -88,10 +91,42 @@ function validatesignup()
     signup3=false;
   }
 
-  return (signup1 && signup2 && signup3);
+  if(signup1 && signup2 && signup3)
+  {
+    if(typeof(Storage) !== "undefined") 
+    {
 
+          var getName = document.getElementById('name').value;
+          var getMailid = document.getElementById('email').value;
+          var getPasword = document.getElementById('password').value;
+
+          localStorage.resultname = getName;
+          localStorage.resultMail = getMailid;
+          localStorage.resultPassword = getPasword;
+
+          user = {
+            name: getName,
+            email: getMailid,
+            password: getPasword
+          };
+          
+          abc = JSON.parse(localStorage["abc"]);
+          abc.push(user);
+          localStorage.setItem("abc",JSON.stringify(abc));
+          abc = JSON.parse(localStorage["abc"]);
+         /// for(var i=0;i<abc.length;i++)
+          //{
+            console.log(localStorage.abc[0]);
+          //}
+          return true;
+
+    } 
+    else 
+    {
+      document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+  }
 }
-
 
 
 //
@@ -127,7 +162,17 @@ function validatelogin()
    	document.getElementById("pass").innerHTML='Please enter a password';
     login2=false;
   }
-  return (login1 && login2);
+  if (login1 && login2)
+  {
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "contact.html", true);
+  xhttp.send();
+  }
 }
 
 //
@@ -237,8 +282,32 @@ function API (cuser,cmail,phone,comment){
     http.open('POST','http://demo6835492.mockable.io/sendEmail')
     http.setRequestHeader('Content-type', 'application/json')
     http.send(JSON.stringify(params))
-    http.onload = function() {
-        
+    http.onload = function() 
+    {
         alert(http.responseText);
     }
+}
+
+// loading signup
+function signuppage() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "signup.html", true);
+  xhttp.send();
+}
+
+//loading conrtact page
+function contactpage() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "contact.html", true);
+  xhttp.send();
 }
