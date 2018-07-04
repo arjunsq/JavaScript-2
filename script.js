@@ -1,6 +1,5 @@
 
 var abc = [];
-
 function checkLength(formname,id,minLengt,maxLengt)
 {
 	x=document.forms[formname][id].value;
@@ -113,11 +112,8 @@ function validatesignup()
           abc = JSON.parse(localStorage["abc"]);
           abc.push(user);
           localStorage.setItem("abc",JSON.stringify(abc));
-          abc = JSON.parse(localStorage["abc"]);
-         /// for(var i=0;i<abc.length;i++)
-          //{
-            console.log(localStorage.abc[0]);
-          //}
+          
+
           return true;
 
     } 
@@ -164,14 +160,30 @@ function validatelogin()
   }
   if (login1 && login2)
   {
-     var xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = function() {
-     if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("demo").innerHTML = this.responseText;
+
+    for(var i=0;i<abc.length;i++)
+    {
+      var checkmail = JSON.parse(localStorage.getItem("abc"))[i].email;
+      var checkpassword = JSON.parse(localStorage.getItem("abc"))[i].password;
+      if ((checkmail== document.forms["login"]["user"].value) && (checkpassword == document.forms["login"]["pwd"].value))
+      {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() 
+        {
+          if (this.readyState == 4 && this.status == 200) 
+          {
+            document.getElementById("demo").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "contact.html", true);
+        xhttp.send();
+
+      }
+      else
+      {
+        document.getElementById("result").innerHTML='Invalid login credentials';
+      }
     }
-  };
-  xhttp.open("GET", "contact.html", true);
-  xhttp.send();
   }
 }
 
