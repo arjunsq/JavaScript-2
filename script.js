@@ -1,5 +1,6 @@
 
 var abc = [];
+
 function checkLength(formname,id,minLengt,maxLengt)
 {
 	x=document.forms[formname][id].value;
@@ -103,18 +104,25 @@ function validatesignup()
           localStorage.resultMail = getMailid;
           localStorage.resultPassword = getPasword;
 
+
           user = {
             name: getName,
             email: getMailid,
             password: getPasword
           };
-          
-          abc = JSON.parse(localStorage["abc"]);
+          if (localStorage.firstentry)
+          {
+            abc = JSON.parse(localStorage["abc"]);
+          }
+          //user=JSON.stringify(user);
+          //
+          //abc = JSON.parse(localStorage["abc"]);
           abc.push(user);
           localStorage.setItem("abc",JSON.stringify(abc));
-          
 
-          return true;
+          localStorage.firstentry += 1;
+
+          
 
     } 
     else 
@@ -160,30 +168,30 @@ function validatelogin()
   }
   if (login1 && login2)
   {
-
+    abc = JSON.parse(localStorage["abc"]);
+    valid=0;
     for(var i=0;i<abc.length;i++)
     {
-      var checkmail = JSON.parse(localStorage.getItem("abc"))[i].email;
-      var checkpassword = JSON.parse(localStorage.getItem("abc"))[i].password;
-      if ((checkmail== document.forms["login"]["user"].value) && (checkpassword == document.forms["login"]["pwd"].value))
+      var checkmail =JSON.parse(localStorage["abc"])[i].email;
+      var checkpassword =JSON.parse(localStorage["abc"])[i].password;
+      //alert(checkmail+":"+checkpassword+":"+i+document.getElementById("user").value+":"+document.getElementById("pwd").value);
+      if ((checkmail==document.getElementById("user").value) && (checkpassword==document.getElementById("pwd").value))
       {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() 
-        {
-          if (this.readyState == 4 && this.status == 200) 
-          {
-            document.getElementById("demo").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "contact.html", true);
-        xhttp.send();
+        valid=1;
+        break;
+      }
 
-      }
-      else
-      {
-        document.getElementById("result").innerHTML='Invalid login credentials';
-      }
     }
+
+    if(valid==1)
+    {
+      contactpage();
+    }
+    else
+    {
+      document.getElementById("result").innerHTML = "Invalid login credentials.";
+    }
+    
   }
 }
 
@@ -312,7 +320,7 @@ function signuppage() {
   xhttp.send();
 }
 
-//loading conrtact page
+//loading contact page
 function contactpage() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {

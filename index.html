@@ -34,14 +34,15 @@
 </div>
   
 <div class="container" id="demo">
+
   <h1 style="text-align: center"> LOGIN FORM </h1>
   <div class="row">
     <div class="col-sm-4">
-    
+    <p id="result"></p>
     </div>
     <div class="col-sm-4">
           <div class="form-group">
-            <form name = "login" action="http://demo6835492.mockable.io/sendEmail" onsubmit="return validatelogin()" method="POST">
+            <form name = "login" >
 
 
             <label for="user">User ID:</label>
@@ -53,14 +54,15 @@
             <input type="password" placeholder= "Enter password" class="form-control" id="pwd">
             <p id="pass" ></p><br>
 
-            <button type="submit" class="btn btn-success btn-block">Login</button>
+            <button type="button" class="btn btn-success btn-block" onclick="validatelogin()" >Login</button>
             </div>  
           </form>
+
           <br><br>
-          <p style="color:#0576DA"; class="text-right" onclick="signuppage()">Not Registered? Sign Up</p>
-          <p style="color:#0576DA"; class="text-right" onclick="contactpage()">Contact Us</p>
+          <p style="color:#0576DA;" class="text-right" onclick="signuppage()" >Not Registered? Sign Up</p>
 
     </div>
+
     <div class="col-sm-4">
     
     </div>
@@ -72,4 +74,5 @@
 
 </body>
 </html>
+
 
